@@ -1,0 +1,47 @@
+{% extends "./plantilla.html" %}
+{% block contenido %}
+<br>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h1 class="mb-4">Lista de Clientes</h1>
+            <a href="{% url 'crear_cliente' %}" class="btn btn-primary mb-4">Agregar Cliente</a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <table class="table table-bordered table-striped table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes %}
+                    <tr>
+                        <td>{{ cliente.id }}</td>
+                        <td>{{ cliente.nombre }}</td>
+                        <td>{{ cliente.correo }}</td>
+                        <td>{{ cliente.telefono }}</td>
+                        <td>
+                            <a href="{% url 'editar_cliente' cliente.id %}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{% url 'eliminar_cliente' cliente.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No hay clientes registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

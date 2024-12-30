@@ -1,0 +1,43 @@
+{% extends "./plantilla.html" %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <br><h1 class="mb-4">Listado de reserva</h1>
+            <a href="/crear_reserva/" class="btn btn-primary mb-4">Agregar Reserva</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered table-dark table-striped table-hover text-center" id="tbl-reserva">
+                <thead>
+                    <tr>
+                <th>#</th>
+                <th>Cliente</th>
+                <th>Espacio</th>
+                <th>Fecha</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reserva in reservas %}
+            <tr>
+                <td>{{ reserva.id }}</td>
+                <td>{{ reserva.cliente.nombre }}</td>
+                <td>{{ reserva.espacio.nombre }}</td>
+                <td>{{ reserva.fecha_reserva }}</td>
+                <td>{{ reserva.hora_inicio }}</td>
+                <td>{{ reserva.hora_fin }}</td>
+                <td>
+                    <a href="{% url 'editar_reserva' reserva.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'eliminar_reserva' reserva.id %}" class="btn btn-danger btn-sm"  onclick="return confirm('¿Estás seguro de eliminar esta reserva?');">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

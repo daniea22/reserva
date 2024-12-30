@@ -1,0 +1,116 @@
+{% extends "./plantilla.html" %}
+{% block contenido %}
+{% load static %}
+<br>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h1 class="mb-4">Agregar nuevo espacio</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="/guardar_espacio/" id="frm_nuevo_espacio">
+                        {% csrf_token %}
+
+                        <!-- Campo Nombre -->
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="txt_nombre" class="form-label"><b>Nombre:</b></label>
+                                <input type="text" class="form-control" name="txt_nombre" id="txt_nombre" placeholder="Ingrese el nombre" required>
+                            </div>
+                        </div>
+
+                        <!-- Campo Ubicación -->
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="txt_ubicacion" class="form-label"><b>Ubicación:</b></label>
+                                <textarea class="form-control" name="txt_ubicacion" id="txt_ubicacion" rows="3" placeholder="Ingrese la ubicación"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Campo Capacidad -->
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="txt_capacidad" class="form-label"><b>Capacidad:</b></label>
+                                <input type="number" class="form-control" name="txt_capacidad" id="txt_capacidad" placeholder="Ingrese la capacidad" required>
+                            </div>
+                        </div>
+
+                        <!-- Campo Descripción -->
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="txt_descripcion" class="form-label"><b>Descripción:</b></label>
+                                <textarea class="form-control" name="txt_descripcion" id="txt_descripcion" rows="3" placeholder="Ingrese la descripción" required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Campo Disponible -->
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="disponible" class="form-label"><b>Disponibilidad:</b></label>
+                                <select class="form-control" name="disponible" id="disponible" required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="SI">Sí</option>
+                                    <option value="NO">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                         <!-- Campo Imagen -->
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="imagen" class="form-label"><b>Imagen:</b></label>
+                                <input type="file" class="form-control" name="imagen" id="imagen" accept="image/*">
+                            </div>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            <a href="{% url 'lista_espacios' %}" class="btn btn-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#frm_nuevo_espacio").validate({
+        rules: {
+            txt_nombre: {
+                required: true,
+                minlength: 3,
+                maxlength: 50
+            },
+            txt_capacidad: {
+                required: true,
+                number: true,
+                min: 1
+            },
+            disponible: {
+                required: true
+            }
+        },
+        messages: {
+            txt_nombre: {
+                required: "Por favor, ingrese el nombre del espacio.",
+                minlength: "El nombre debe tener al menos 3 caracteres.",
+                maxlength: "El nombre no debe superar los 50 caracteres."
+            },
+            txt_capacidad: {
+                required: "Por favor, ingrese la capacidad.",
+                number: "La capacidad debe ser un número válido.",
+                min: "La capacidad debe ser mayor a 0."
+            },
+            disponible: {
+                required: "Por favor, seleccione la disponibilidad."
+            }
+        }
+    });
+</script>
+{% endblock %}

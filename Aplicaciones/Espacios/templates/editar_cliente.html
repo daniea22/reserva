@@ -1,0 +1,77 @@
+{% extends "./plantilla.html" %}
+{% block contenido %}
+{% load static %}
+<br>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h1 class="mb-4">Editar cliente</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="{% url 'editar_cliente' cliente.id %}" id="frm_editar_cliente">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingrese el nombre" value="{{ cliente.nombre }}" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="correo">Correo:</label>
+                            <input type="email" id="correo" name="correo" class="form-control" placeholder="Ingrese el correo" value="{{ cliente.correo }}" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="telefono">Teléfono:</label>
+                            <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Ingrese el teléfono" value="{{ cliente.telefono }}">
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            <a href="{% url 'lista_cliente' %}" class="btn btn-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Validación del formulario
+    $("#frm_editar_cliente").validate({
+        rules: {
+            nombre: {
+                required: true,
+                minlength: 3,
+                maxlength: 100
+            },
+            correo: {
+                required: true,
+                email: true
+            },
+            telefono: {
+                required: false,
+                minlength: 10,
+                maxlength: 15
+            }
+        },
+        messages: {
+            nombre: {
+                required: "Por favor, ingrese el nombre.",
+                minlength: "El nombre debe tener al menos 3 caracteres.",
+                maxlength: "El nombre no debe superar los 100 caracteres."
+            },
+            correo: {
+                required: "Por favor, ingrese el correo.",
+                email: "Por favor, ingrese un correo electrónico válido."
+            },
+            telefono: {
+                minlength: "El teléfono debe tener al menos 10 caracteres.",
+                maxlength: "El teléfono no debe superar los 15 caracteres."
+            }
+        }
+    });
+</script>
+{% endblock %}

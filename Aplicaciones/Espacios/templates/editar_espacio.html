@@ -1,0 +1,43 @@
+{% extends "./plantilla.html" %}
+{% block contenido %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Editar Espacio</h1>
+    <form method="post" action="{% url 'editar_espacio' espacio.id %}" id="frm_editar_espacio" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="txt_nombre" class="form-label"><b>Nombre:</b></label>
+            <input type="text" class="form-control" name="txt_nombre" id="txt_nombre" value="{{ espacio.nombre }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="txt_ubicacion" class="form-label"><b>Ubicación:</b></label>
+            <textarea class="form-control" name="txt_ubicacion" id="txt_ubicacion" rows="3">{{ espacio.ubicacion }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="txt_capacidad" class="form-label"><b>Capacidad:</b></label>
+            <input type="number" class="form-control" name="txt_capacidad" id="txt_capacidad" value="{{ espacio.capacidad }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="txt_descripcion" class="form-label"><b>Descripción:</b></label>
+            <textarea class="form-control" name="txt_descripcion" id="txt_descripcion" rows="3" required>{{ espacio.descripcion }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="disponible" class="form-label"><b>Disponible:</b></label>
+            <select class="form-control" name="disponible" id="disponible">
+                <option value="SI" {% if espacio.disponible %}selected{% endif %}>Sí</option>
+                <option value="NO" {% if not espacio.disponible %}selected{% endif %}>No</option>
+            </select>
+        </div>
+
+        <label for="imagen"><b>Imagen:</b></label>
+        <input type="file" class="form-control" name="imagen" id="imagen" accept="image/*">
+        <br>
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a href="{% url 'lista_espacios' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

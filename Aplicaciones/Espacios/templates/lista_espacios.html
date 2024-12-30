@@ -1,0 +1,88 @@
+{% extends "./plantilla.html" %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <br><h1 class="mb-4">Listado de Espacios</h1>
+            <a href="/crear_espacio/" class="btn btn-primary mb-4">Agregar Espacio</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered table-dark table-striped table-hover text-center" id="tbl-espacio">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Ubicación</th>
+                        <th>Capacidad</th>
+                        <th>Descripción</th>
+                        <th>Disponible</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for espacio in espacios %}
+                    <tr>
+                        <td>{{ espacio.id}}</td>
+                        <td>{{ espacio.nombre }}</td>
+                        <td>{{ espacio.ubicacion }}</td>
+                        <td>{{ espacio.capacidad }}</td>
+                        <td>{{ espacio.descripcion }}</td>
+                        <td>{{ espacio.disponible|yesno:"Sí,No" }}</td>
+                        <td>
+                            {% if espacio.imagen %}
+                            <a href="{{ espacio.imagen.url }}">
+                                <img src="{{ espacio.imagen.url }}" alt="Imagen de espacio" height="100" width="100">
+                            </a>
+                            {% else %}
+                            No disponible
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'editar_espacio' espacio.id %}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="javascript:void(0);" onclick="eliminarEspacio('{% url 'eliminar_espacio' espacio.id %}');" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="8" class="text-center">No hay espacios registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Inicialización de DataTable
+    let table = new DataTable('#tbl-espacio');
+
+    // Confirmación de eliminación con IziToast
+    function eliminarEspacio(url) {
+        iziToast.question({
+            timeout: 15000,
+            close: true,
+            overlay: true,
+            displayMode: 'once',
+            id: 'question',
+            zindex: 999,
+            title: 'CONFIRMACIÓN',
+            message: '¿Está seguro de eliminar el espacio seleccionado?',
+            position: 'center',
+            buttons: [
+                ['<button><b>SÍ</b></button>', function (instance, toast) {
+                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                    window.location.href = url;
+                }, true],
+                ['<button>NO</button>', function (instance, toast) {
+                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                }],
+            ]
+        });
+    }
+</script>
+{% endblock %}

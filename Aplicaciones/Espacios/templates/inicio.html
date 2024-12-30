@@ -1,0 +1,221 @@
+{% extends "./plantilla.html" %}
+{% block contenido %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Gestion de RESERVAS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="{%static 'assets/img/apple-icon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{%static 'assets/img/favicon.ico' %}">
+
+    <link rel="stylesheet" href="{%static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{%static 'assets/css/templatemo.css' %}">
+    <link rel="stylesheet" href="{%static 'assets/css/custom.css' %}">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="{%static 'assets/css/fontawesome.min.css' %}">
+<!--
+    
+TemplateMo 559 Zay Shop
+
+https://templatemo.com/tm-559-zay-shop
+
+-->
+</head>
+
+  
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Start Banner Hero -->
+    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="{%static './assets/img/banner_img_011.jpg' %}" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left align-self-center">
+                                <h1 class="h1 text-success"><b>Pronto</b>  Nuevos Espacios</h1>
+                                <h3 class="h2">Espacio para la lectura</h3>
+                                <p>
+                                  La reserva de espacios en una universidad es un proceso fundamental 
+                                  para la gestión eficiente de sus instalaciones. A través de un sistema 
+                                  de reservas, estudiantes, docentes y personal administrativo pueden consultar 
+                                  la disponibilidad de aulas, auditorios, salas de estudio, laboratorios
+                                   y otros espacios, y realizar reservas según sus necesidades.
+                                    
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="{%static './assets/img/descanso1500.jpg' %}" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                
+                                <h3 class="h2">Espacio para Descanso</h3>
+                                <p>
+                                  La reserva de espacios en una universidad es un proceso fundamental 
+                                  para la gestión eficiente de sus instalaciones. A través de un sistema 
+                                  de reservas, estudiantes, docentes y personal administrativo pueden consultar 
+                                  la disponibilidad de aulas, auditorios, salas de estudio, laboratorios
+                                   y otros espacios, y realizar reservas según sus necesidades.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="{%static './assets/img/21-0151909.jpg' %}" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                              
+                                <h3 class="h2">Nuevo laboratorio </h3>
+                                <p>
+                                  La reserva de espacios en una universidad es un proceso fundamental 
+                                  para la gestión eficiente de sus instalaciones. A través de un sistema 
+                                  de reservas, estudiantes, docentes y personal administrativo pueden consultar 
+                                  la disponibilidad de aulas, auditorios, salas de estudio, laboratorios
+                                   y otros espacios, y realizar reservas según sus necesidades.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    </div>
+    <!-- End Banner Hero -->
+    <section class="container py-5">
+        <div class="row text-center pt-3">
+
+                <h1 class="h1">Epacios</h1>
+                <p>
+                    Aqui puedes observar los espacios Disponibles
+                </p>
+
+    <div class="container">
+        <div class="row">
+            {% for espacio in espacios %}
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <div class="image-container position-relative">
+                    <a href="#">
+                        {% if espacio.imagen %}
+                        <img src="{{ espacio.imagen.url }}" class="img-fluid border square-image" alt="{{ espacio.nombre }}">
+                        {% else %}
+                        <img src="https://via.placeholder.com/300x300" class="img-fluid border square-image" alt="Sin imagen">
+                        {% endif %}
+                        <div class="availability-overlay">
+                            <span>{{ espacio.disponible|yesno:"Disponible,No disponible" }}</span>
+                        </div>
+                    </a>
+                </div>
+                <h5 class="text-center mt-3 mb-3">{{ espacio.nombre }}</h5>
+                <p class="text-center">
+                    <span>📍 {{ espacio.ubicacion }}</span><br>
+                    <span>👥 Capacidad: {{ espacio.capacidad }}</span>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+
+    <style>
+        .square-image {
+            width: 100%; /* Imagen ajusta el ancho del contenedor */
+            aspect-ratio: 1; /* Hace la imagen cuadrada */
+            object-fit: cover; /* Ajusta contenido en la imagen */
+        }
+    
+        .image-container {
+            position: relative; /* Contenedor relativo para superposición */
+        }
+    
+        .availability-overlay {
+            position: absolute; /* Posición absoluta dentro del contenedor */
+            top: 50%; /* Centrado vertical */
+            left: 50%; /* Centrado horizontal */
+            transform: translate(-50%, -50%); /* Ajusta el centrado */
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+            color: #fff; /* Texto blanco */
+            padding: 10px 20px; /* Espaciado interno */
+            border-radius: 5px; /* Opcional: bordes redondeados */
+            font-weight: bold; /* Resaltar texto */
+        }
+    </style>
+
+
+<div class="text-center mt-4">
+    <a href="{% url 'lista_reserva' %}" class="btn btn-primary">
+        Reservar
+    </a>
+</div>
+
+<style>
+    .custom-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .custom-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+    
+
+{% endblock %}
